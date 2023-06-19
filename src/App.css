@@ -1,16 +1,67 @@
+/* whole icons app */
+
+/* 
+<i class="bi bi-list"></i>
+<i class="bi bi-play-fill"></i>
+<i class="bi bi-skip-backward-fill"></i>
+<i class="bi bi-skip-forward-fill"></i>
+<i class="bi bi-search"></i>
+<i class="bi bi-three-dots"></i>
+<i class="bi bi-three-dots-vertical"></i>
+<i class="bi bi-youtube"></i>
+<i class="bi bi-pause-circle"></i>
+<i class="bi bi-pause"></i>
+<i class="bi bi-gear"></i>
+<i class="bi bi-fullscreen"></i>
+<i class="bi bi-fullscreen-exit"></i>
+<i class="bi bi-chevron-down"></i>
+<i class="bi bi-camera-video"></i>
+<i class="bi bi-bell"></i>
+<i class="bi bi-file-play"></i>
+<i class="bi bi-pie-chart"></i>
+<i class="bi bi-x-lg"></i>
+<i class="bi bi-plus-lg"></i>
+<i class="bi bi-house-check-fill"></i>
+<i class="bi bi-chevron-up"></i>
+<i class="bi bi-chevron-left"></i>
+<i class="bi bi-chevron-right"></i>
+<i class="bi bi-box2-heart"></i> // abonnement
+<i class="bi bi-box-arrow-in-up-left"></i> // historique
+<i class="bi bi-arrows-angle-contract"></i> // a regarder plus tard
+<i class="bi bi-clock"></i> // a regarder plus tard
+<i class="bi bi-bar-chart-fill"></i> // bibliotheque
+<i class="bi bi-caret-right-square"></i> // vos videos
+<i class="bi bi-cloud-check-fill"></i> // shorts
+<i class="bi bi-grid-fill"></i> // shorts
+<i class="bi bi-chat-right-dots"></i> // commentaires
+<i class="bi bi-r-circle-fill"></i> icon sign in
+<i class="bi bi-check2"></i> // like
+<i class="bi bi-chevron-bar-down"></i> dislike
+*/
+
+/*whole colors and background-color */
+
+/*
+color: black;
+  color: rgb(110, 110, 110); // gray
+  color: #fff;
+   color: rgb(170, 9, 9);// red
+*/
+
+/* font family */
+
+/*
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=B612&family=Hind+Madurai:wght@600&display=swap');
+</style>
+
+font-family: 'B612', sans-serif; // simple text 
+font-family: 'Hind Madurai', sans-serif; // title
+
+*/
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {
@@ -22,17 +73,4 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
