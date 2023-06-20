@@ -1,4 +1,8 @@
+// defining the server port
+const PORT = 5000;
+
 //initializing installed dependencies
+
 const express = require("express");
 
 require("dotenv").config();
@@ -11,11 +15,8 @@ const cors = require("cors");
 
 app.use(cors());
 
-// defining the server port
-const port = process.env.PORT || 5000;
-
 // listening for port 5000
-app.listen(5000, () => console.log(`server is running on ${port}`));
+app.listen(5000, () => console.log(`server is running on PORT ${PORT}`));
 
 // API request
 
@@ -26,19 +27,40 @@ Accept: application/json
  */
 
 app.get("/", (req, res) => {
-  let words = req.query.words; // i need to write input value in frontend
+  res.send("hello my back");
+});
 
-  const options = {
-    method: "GET",
-    url: `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${words}&key=${process.env.YOUTUBE_API_KEY}`,
+app.get("/search", async (req, res, next) => {
+  try {
+    const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
+    let words = req.query.words;
 
-    Headers: {
+    /*  console.log(req); */
+
+    const options = {
+      method: "GET",
+      url: "https://youtube.googleapis.com/youtube/v3/search" /* BASE_URL*/,
+      params: {
+        part: "snippet",
+        q: words,
+        key: `${YOUTUBE_API_KEY}`,
+      },
+
+      /*  headers: {
       Authorization: Bearer[process.env.ACCESS_TOKEN_KEY],
       Accept: application / json,
-    },
-  };
+      "x-youtube-host": "youtube.googleapis.com",
+      "x-youtube-api": process.env.YOUTUBE_API_KEY,
+    }, */
+    };
+    const response = await axios.request(options);
 
-  axios.request(options).then((response) => {
+    res.send(res.json(response.data));
+
+    /*  axios.request(options).then((response) => {
     res.json(response.data);
-  });
+  }); */
+  } catch (err) {
+    next(err);
+  }
 });
