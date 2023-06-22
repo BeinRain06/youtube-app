@@ -26,17 +26,17 @@ function Navbar() {
               {/*  have to implement position stick here */}
               <div className="nav_mob_ct1">
                 <div className="nav_logo d-flex flex-row">
-                  <span className="logo mr-1">
-                    <i className="bi bi-youtube"></i>
+                  <span className="logo ">
+                    <i className=" bi bi-youtube"></i>
                   </span>
                   <span className="label_logo">YouTube</span>
                 </div>
                 <ul className="nav_search">
                   <li className="search_item_wrapper">
-                    <i className="search_display bi bi-search"></i>
+                    <i className="bi bi-search"></i>
                   </li>
                   <li className="three_dots_options">
-                    <i className="bi bi-three-dots-vertical"></i>
+                    <i className="bi bi-r-circle-fill"></i>
                   </li>
                 </ul>
               </div>
@@ -49,8 +49,10 @@ function Navbar() {
               >
                 <ul className="  up_tools_links">
                   {UpToolsLinks.map((element, index) => (
-                    <div className="up_item">{element.title}</div>
-                  ))}{" "}
+                    <div key={index} className="up_item">
+                      {element.title}
+                    </div>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -95,25 +97,28 @@ function Navbar() {
         <div className="nav_desktop">
           <div className="nav_desk_ct">
             <div className="nav_left d-flex flex-row">
-              <div className="menu_icon mr-4" onClick={handleClickMenu}>
+              <div className="menu_icon" onClick={handleClickMenu}>
                 <i className="bi bi-list"></i>
               </div>
               <div className="nav_logo_desk d-flex flex-center">
-                <span className="logo mr-1">
+                <span className="logo">
                   <i className="bi bi-youtube"></i>
                 </span>
                 <span className="label_logo">YouTube</span>
               </div>
             </div>
             <div className="area_middle">
-              <ul className="in_middle_search d-flex flex-center">
+              <ul className="in_middle_search  ">
                 <li className="input_side">
-                  <input type="text" name="text" className="input_value" />
+                  <input
+                    type="text"
+                    name="text"
+                    className="input_value"
+                    placeholder="Rechercher"
+                  />
                 </li>
                 <li className="button_side">
-                  <button type="button" className="btn_desktop">
-                    <i className="search_one bi bi-search"></i>
-                  </button>
+                  <i className="search_one bi bi-search"></i>
                 </li>
               </ul>
             </div>

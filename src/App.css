@@ -51,15 +51,11 @@ color: black;
 
 /* font family */
 
-/*
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=B612&family=Hind+Madurai:wght@600&display=swap');
-</style>
+/* @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Piazzolla:wght@300&family=Unna:wght@700&display=swap'); */
 
-font-family: 'B612', sans-serif; // simple text 
-font-family: 'Hind Madurai', sans-serif; // title
-
-*/
+/* font-family: 'Fjalla One', sans-serif;
+font-family: 'Piazzolla', serif; //SUBTITLE
+font-family: 'Unna', serif; // TITLE*/
 
 .App {
   position: relative;

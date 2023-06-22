@@ -1,7 +1,7 @@
 import { createContext, useState, useRef, useEffect } from "react";
 import axios from "axios";
 
-export const YoutubeContext = createContext();
+export const YoutubeContext = createContext(null);
 
 export const UpToolsLinks = [
   { title: "Explore", icon: undefined },
@@ -109,16 +109,16 @@ function YoutubeContextProvider(props) {
     setMenu((prev) => !prev);
   };
 
-  const { contextValue } = {
+  const contextValue = {
     newSearchBar,
     navRef1,
     navRef2,
     navRef3,
-    newKeyPress,
     inputValue,
     scrollDirection,
     listItems,
     dotsMob,
+    menu,
     handleChange,
     handleWordsSearch,
     handleSeenSearchBar,

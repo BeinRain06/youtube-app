@@ -1,6 +1,7 @@
 import "./MainArea.css";
 
 import { useContext } from "react";
+import { YoutubeContext } from "../context/YoutubeContext";
 
 function MainArea() {
   const { menu, dotsMob, listItems } = useContext(YoutubeContext);
@@ -24,7 +25,7 @@ function MainArea() {
                 <i className="bi bi-box2-heart"></i>
               </div>
               <div className="box_library_icon box_ic">
-                <i class="bi bi-bar-chart-fill"></i>
+                <i className="bi bi-bar-chart-fill"></i>
               </div>
             </div>
             <div className="home_content_menu">
