@@ -23,6 +23,8 @@ function YoutubeContextProvider(props) {
   const [inputValue, setInputValue] = useState("");
   const [words, setWords] = useState("");
   const [newSearchBar, setNewSearchbar] = useState(false);
+  const [dotsMob, setDotMobs] = useState(false);
+  const [menu, setMenu] = useState(false);
   const [listItems, setListItems] = useState([]);
   const [scrollDirection, setScrollDirection] = useState(null);
   const navRef1 = useRef(null);
@@ -31,6 +33,10 @@ function YoutubeContextProvider(props) {
 
   // hide or show Navbar Mobile onScroll
   useEffect(() => {
+    const verticalDotsMobile = () => {
+      setDotMobs((prev) => !prev);
+    };
+
     const updateScrollDirection = () => {
       let lastScrollY = window.scrollY;
       const scrollY = window.scrollY;
@@ -44,10 +50,12 @@ function YoutubeContextProvider(props) {
       lastScrollY = scrollY > 0 ? scrollY : 0;
     };
     window.addEventListener("scroll", updateScrollDirection); // add Event listener
+    window.addEventListener("click", verticalDotsMobile);
     return () => {
       window.removeEventListener("scroll", updateScrollDirection); // remove Event listener
+      window.removeEventListener("mousedown", verticalDotsMobile);
     };
-  }, [scrollDirection]);
+  }, [scrollDirection, dotsMob]);
 
   // inner functions
   const handleSeenSearchBar = () => {
@@ -97,7 +105,9 @@ function YoutubeContextProvider(props) {
     }
   };
 
-  /*  const handleClickMenu = () => {}; */
+  const handleClickMenu = () => {
+    setMenu((prev) => !prev);
+  };
 
   const { contextValue } = {
     newSearchBar,
@@ -108,10 +118,12 @@ function YoutubeContextProvider(props) {
     inputValue,
     scrollDirection,
     listItems,
+    dotsMob,
     handleChange,
     handleWordsSearch,
     handleSeenSearchBar,
     handleKeyPress,
+    handleClickMenu,
   };
 
   return (

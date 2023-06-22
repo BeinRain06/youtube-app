@@ -1,7 +1,6 @@
 import "./Navbar.css";
 import { UpToolsLinks, YoutubeContext } from "../context/YoutubeContext";
 import { useContext } from "react";
-import e from "express";
 
 function Navbar() {
   const {
@@ -15,6 +14,7 @@ function Navbar() {
     handleWordsSearch,
     handleSeenSearchBar,
     handleKeyPress,
+    handleClickMenu,
   } = useContext(YoutubeContext);
 
   return (
@@ -95,7 +95,7 @@ function Navbar() {
         <div className="nav_desktop">
           <div className="nav_desk_ct">
             <div className="nav_left d-flex flex-row">
-              <div className="menu_inside mr-4">
+              <div className="menu_icon mr-4" onClick={handleClickMenu}>
                 <i className="bi bi-list"></i>
               </div>
               <div className="nav_logo_desk d-flex flex-center">

@@ -3,12 +3,16 @@ import "./MainArea.css";
 import { useContext } from "react";
 
 function MainArea() {
-  const { listItems } = useContext(YoutubeContext);
+  const { menu, dotsMob, listItems } = useContext(YoutubeContext);
   return (
     <div className="main_area_container">
-      <div className="main_area_content">
+      <div
+        className={
+          menu ? `main_area_content shadow_main_area` : `main_area_content`
+        }
+      >
         <div className="menu_city">
-          <div className="menu_content">
+          <div className={menu ? `menu_content show_our_menu` : `menu_content`}>
             <div className="home_symbols_menu">
               <div className="box_home_icon box_ic">
                 <i className="bi bi-house-check-fill"></i>
@@ -23,7 +27,7 @@ function MainArea() {
                 <i class="bi bi-bar-chart-fill"></i>
               </div>
             </div>
-            <div className="home_menu_content d-flex flex-center ">
+            <div className="home_content_menu">
               <div className="first_at_home d-flex flex-center">
                 <div className="item_public">
                   <span>
@@ -110,23 +114,32 @@ function MainArea() {
             </div>
           </div>
         </div>
-        <div className="box_videos_city">
+        <div
+          className={
+            dotsMob ? `box_videos_city shadow_city` : `box_videos_city`
+          }
+        >
           <ul className="box_videos_content">
             {listItems.map((item, index) => (
               <li key={index} className="box_video">
                 <div className="box_crt_video">
-                  <video controls="true" src="" className="video_link"></video>
+                  <video
+                    controls="true"
+                    src={item.snippet.thumbnails.medium.url}
+                    className="video_link"
+                  ></video>
                 </div>
                 <div className="box_subtitle">
                   <div className="box_info_video">
-                    <img
-                      src=""
-                      alt="creator missing"
-                      className="logo_creator"
-                    />
+                    <p className="logo_creator">
+                      {item.snippet.thumbnails.channelTitle}
+                    </p>
                     <div className="info_video_content">
-                      <p className="title_video"></p>
-                      <p className="video_number_views"></p>
+                      <p className="title_video">{item.snippet.title} </p>
+                      <p className="video_number_views">
+                        <span>{item.snippet.thumbnails.channelTitle}</span>
+                        <span>{item.snippet.publishedAt}</span>
+                      </p>
                     </div>
                   </div>
                   <div className="box_info_more">
@@ -136,7 +149,13 @@ function MainArea() {
               </li>
             ))}
           </ul>
+          <ul className="dots_mob_content">
+            <li>Not Interest</li>
+            <li>Don't recommend this video</li>
+            <li>See Later</li>
+          </ul>
         </div>
+        <div className="box_videos_city_desk"></div>
       </div>
     </div>
   );

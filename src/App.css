@@ -62,12 +62,14 @@ font-family: 'Hind Madurai', sans-serif; // title
 */
 
 .App {
+  position: relative;
   text-align: center;
 }
 
 .App-container {
   background-color: #282c34;
   background-color: #ffffff;
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
