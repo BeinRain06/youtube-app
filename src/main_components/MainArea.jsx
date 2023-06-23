@@ -2,16 +2,18 @@ import "./MainArea.css";
 
 import { useContext } from "react";
 import { YoutubeContext } from "../context/YoutubeContext";
+import { DataSimulatiom } from "../TryExData/DataSimulation";
 
 function MainArea() {
   const { menu, dotsMob, listItems } = useContext(YoutubeContext);
+
+  /* className={
+          menu ? `main_area_content shadow_main_area` : `main_area_content`
+        } */
+
   return (
     <div className="main_area_container">
-      <div
-        className={
-          menu ? `main_area_content shadow_main_area` : `main_area_content`
-        }
-      >
+      <div className="main_area_content">
         <div className="menu_city">
           <div className={menu ? `menu_content show_our_menu` : `menu_content`}>
             <div className="home_symbols_menu">
@@ -88,28 +90,27 @@ function MainArea() {
                 </div>
               </div>
               <div className="third_ref_subscription d-flex">
-                <span className="title_sub py-2 text-align-left">
-                  Subscription
-                </span>
-                <div className="third_content_sub d-flex flex-center">
-                  <div className="item_public">
-                    <span>
-                      <i className="bi bi-pie-chart"></i>
-                    </span>
-                    <span>WION</span>
-                  </div>
-                  <div className="item_public">
-                    <span>
-                      <i className="bi bi-fullscreen"></i>
-                    </span>
-                    <span>English Speeches</span>
-                  </div>
-                  <div className="item_public">
-                    <span>
-                      <i className="bi bi-cloud-check-fill"></i>
-                    </span>
-                    <span>BloomBerg</span>
-                  </div>
+                <div className="item_public">
+                  <span></span>
+                  <span className="third_title">Subscription</span>
+                </div>
+                <div className="item_public">
+                  <span>
+                    <i className="bi bi-pie-chart"></i>
+                  </span>
+                  <span>WION</span>
+                </div>
+                <div className="item_public">
+                  <span>
+                    <i className="bi bi-fullscreen"></i>
+                  </span>
+                  <span>English Speeches</span>
+                </div>
+                <div className="item_public">
+                  <span>
+                    <i className="bi bi-cloud-check-fill"></i>
+                  </span>
+                  <span>BloomBerg</span>
                 </div>
               </div>
             </div>
@@ -120,7 +121,7 @@ function MainArea() {
             dotsMob ? `box_videos_city shadow_city` : `box_videos_city`
           }
         >
-          <ul className="box_videos_content">
+          {/* <ul className="box_videos_content">
             {listItems.map((item, index) => (
               <li key={index} className="box_video">
                 <div className="box_crt_video">
@@ -145,6 +146,31 @@ function MainArea() {
                   </div>
                   <div className="box_info_more">
                     <i className="bi bi-three-dots"></i>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul> */}
+          <ul className="box_videos_content">
+            {DataSimulatiom.map((item, index) => (
+              <li key={index} className="box_video">
+                <div className="box_crt_video">
+                  <img
+                    src={item.img}
+                    alt="oops missing"
+                    className="video_link"
+                  ></img>
+                </div>
+                <div className="box_subtitle">
+                  <div className="logo_creator">{item.channelTitle}</div>
+                  <p className="video_infos">
+                    <span className="title_video">{item.title}</span>
+                    <span className="channel_details">
+                      {item.channelTitle} {item.publishedAt}
+                    </span>
+                  </p>
+                  <div className="box_info_more">
+                    <i className="bi bi-three-dots-vertical"></i>
                   </div>
                 </div>
               </li>

@@ -320,37 +320,42 @@ ul {
     flex-direction: row;
     width: 100%;
     height: 100%;
-    justify-content: cemter;
+    justify-content: center;
     align-items: center;
     padding: 0.75rem;
   }
 
   .nav_left {
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-basis: 25%;
     height: 100%;
-    margin: 0.35rem auto;
-    background-color: red;
-  }
+    gap: 2rem;
+    /*  margin: 0.35rem auto; */
 
-  .nav_logo_desk {
-    height: 100%;
+    background-color: red;
+    background-color: #383897;
   }
 
   .menu_icon {
+    display: grid;
+    place-items: center;
     height: 100%;
-    padding: 0.35rem;
+    padding: 0;
+    width: 2.2rem;
     background-color: #e0dcdc;
   }
 
   .nav_logo_desk {
+    position: relative;
+    top: 0;
+    left: -0.5rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     height: 100%;
-    flex-basis: 70%;
+    flex-basis: 60%;
   }
 
   .logo {
@@ -361,6 +366,9 @@ ul {
   }
 
   .label_logo {
+    position: relative;
+    top: 0;
+    left: -0.5rem;
     display: grid;
     place-items: center;
     width: 100%;
@@ -437,5 +445,23 @@ ul {
     place-items: center;
     width: 100%;
     height: 100%;
+  }
+}
+
+@media (min-width: 990px) {
+  .menu_icon {
+    height: 70%;
+    padding: 0;
+    width: 1.6rem;
+    background-color: #e0dcdc;
+  }
+  .nav_logo_desk {
+    left: -4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    flex-basis: 45%;
   }
 }
