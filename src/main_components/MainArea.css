@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Fjalla+One&family=Piazzolla:wght@300&family=Unna:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fjalla+One&family=Piazzolla:wght@300&family=Roboto&display=swap");
 
 /* font-family: 'Fjalla One', sans-serif;
 font-family: 'Piazzolla', serif; //SUBTITLE
-font-family: 'Unna', serif; // TITLE*/
+font-family: 'Roboto', sans-serif;; // TITLE*/
 
 * {
   box-sizing: border-box;
@@ -198,7 +198,6 @@ font-family: 'Unna', serif; // TITLE*/
     gap: 0.5rem;
     justify-content: center;
     align-items: center;
-    background-color: red;
     margin: 0 auto;
   }
 
@@ -210,11 +209,10 @@ font-family: 'Unna', serif; // TITLE*/
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: min(22rem, 100vw);
-    width: 100vw;
+    width: 100%;
     height: 250px;
     margin: auto;
-    background-color: #bbb9b9;
+    /*   background-color: #bbb9b9; */
     object-fit: contain;
   }
 
@@ -231,27 +229,40 @@ font-family: 'Unna', serif; // TITLE*/
     object-fit: fill;
     z-index: 0;
     margin: auto;
-    border: 2px solid brown;
+    border: 1px solid rgb(221, 124, 124);
   }
 
   /* box subtitle*/
   .box_subtitle {
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 35%;
+    padding: 0.5rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
 
-  .logo_creator,
+  .space_brand,
   .box_info_more {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 35px;
+    height: 100%;
+  }
+
+  .logo_brand,
+  .bi-three-dots-vertical {
+    display: grid;
+    place-items: center;
     width: 35px;
     height: 35px;
     border-radius: 50%;
     overflow: hidden;
-    background-color: aqua;
+    background-color: #dadada;
   }
 
   .video_infos {
@@ -259,37 +270,43 @@ font-family: 'Unna', serif; // TITLE*/
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: red;
-    width: calc(100vw - 70px);
+    width: calc(100vw - 110px);
     height: 100%;
     margin: auto;
     font-size: 12px;
+    text-align: left;
   }
 
   .title_video {
     /*achieve css ellipsis -truncate text after
     a couple of line*/
+
     display: -webkit-box;
-    overflow: hidden;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-    white-space: normal;
-    line-height: 1.2;
-    font-family: "Fjalla One", sans-serif;
-    font-size: 12px;
+    white-space: pre-wrap;
     width: 100%;
-    padding: 0.25rem;
+    line-height: 1.25;
+    height: 2.65em;
+    overflow: hidden;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 1.1em;
+    padding: 0 0.5rem;
     font-weight: bold;
     text-align: left;
     margin: auto;
-    background-color: bisque;
+    /*   background-color: bisque; */
   }
 
   .channel_details {
-    padding: 0.25rem;
+    padding: 0 0.5rem;
     font-family: "Piazzolla", serif;
-    font-size: 12px;
-    background-color: aqua;
+    width: 100%;
+    font-size: 1.1em;
+    line-height: 0.9em;
+    text-align: left;
+    /*     background-color: aqua; */
   }
 
   /* box three dots click functionalities*/
@@ -317,10 +334,6 @@ font-family: 'Unna', serif; // TITLE*/
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
-  }
-
-  .box_info_more {
-    background-color: blue;
   }
 
   .dots_mob_content {
@@ -354,12 +367,23 @@ font-family: 'Unna', serif; // TITLE*/
 
   .box_videos_content {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 50%);
   }
 
   .box_video {
-    width: 46vw;
+    display: flex;
+    width: 100%;
     height: 300px;
+    border-radius: 10px;
+  }
+
+  .video_link {
+    border-radius: 5px;
+  }
+
+  .title_video {
+    width: 100%;
+    margin: 0;
   }
 }
 
@@ -385,6 +409,7 @@ font-family: 'Unna', serif; // TITLE*/
     flex-direction: row;
     width: 100vw;
     justify-content: center;
+    padding-top: 2.5rem;
     margin: 0 auto;
   }
 
@@ -395,7 +420,7 @@ font-family: 'Unna', serif; // TITLE*/
 
   .menu_content .home_symbols_menu {
     position: relative;
-    top: 0;
+    top: -1.7rem;
     left: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -448,12 +473,14 @@ font-family: 'Unna', serif; // TITLE*/
   .box_videos_content {
     display: grid;
     grid-template-columns: repeat(3, auto);
-    grid-template-rows: auto;
+    height: auto;
+    grid-template-rows: 18.5em;
   }
 
   .box_video {
     width: 28vw;
     height: 300px;
+    box-shadow: 0px 0px 15px #dadada;
   }
 
   .box_crt_video {
@@ -464,25 +491,18 @@ font-family: 'Unna', serif; // TITLE*/
   }
 
   .video_link {
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-    margin: 0;
     border-radius: 8px;
-    border: 2px solid brown;
   }
 
   .box_subtitle {
-    display: flex;
-    flex-direction: row;
     width: inherit;
     height: 30%;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+  }
+
+  .space_brand,
+  .box_info_more {
     justify-content: center;
-    align-items: center;
-    /* padding: 0.5rem 0.5rem 1rem; */
-    padding: 0;
-    margin: auto;
-    z-index: 3;
-    background-color: pink;
   }
 }

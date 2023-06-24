@@ -1,4 +1,5 @@
 import "./MainArea.css";
+import clamp from "clamp.js";
 
 import { useContext } from "react";
 import { YoutubeContext } from "../context/YoutubeContext";
@@ -10,6 +11,10 @@ function MainArea() {
   /* className={
           menu ? `main_area_content shadow_main_area` : `main_area_content`
         } */
+
+  /*  let moduleClamp = document.getElementById("clamp-this-module");
+
+  clamp(moduleClamp, { clamp: 2 }); */
 
   return (
     <div className="main_area_container">
@@ -132,21 +137,20 @@ function MainArea() {
                   ></video>
                 </div>
                 <div className="box_subtitle">
-                  <div className="box_info_video">
-                    <p className="logo_creator">
-                      {item.snippet.thumbnails.channelTitle}
-                    </p>
-                    <div className="info_video_content">
-                      <p className="title_video">{item.snippet.title} </p>
-                      <p className="video_number_views">
-                        <span>{item.snippet.thumbnails.channelTitle}</span>
-                        <span>{item.snippet.publishedAt}</span>
-                      </p>
-                    </div>
+                <div className="space_brand">
+                    <i className="logo_brand">{item.snippet.thumbnails.channelTitle}</i>
                   </div>
+                  <p className="video_infos">
+                    <span id="clamp-this-module" className="title_video">
+                      {item.snippet.title}
+                    </span>
+                    <span className="channel_details">
+                      {item.snippet.thumbnails.channelTitle} {item.snippet.publishedAt}
+                    </span>
+                  </p>
                   <div className="box_info_more">
-                    <i className="bi bi-three-dots"></i>
-                  </div>
+                    <i className="bi bi-three-dots-vertical"></i>
+                  </div>  
                 </div>
               </li>
             ))}
@@ -162,9 +166,13 @@ function MainArea() {
                   ></img>
                 </div>
                 <div className="box_subtitle">
-                  <div className="logo_creator">{item.channelTitle}</div>
+                  <div className="space_brand">
+                    <i className="logo_brand">{item.channelTitle}</i>
+                  </div>
                   <p className="video_infos">
-                    <span className="title_video">{item.title}</span>
+                    <span id="clamp-this-module" className="title_video">
+                      {item.title}
+                    </span>
                     <span className="channel_details">
                       {item.channelTitle} {item.publishedAt}
                     </span>
