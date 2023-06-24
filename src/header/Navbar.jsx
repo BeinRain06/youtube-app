@@ -1,26 +1,80 @@
 import "./Navbar.css";
 import { UpToolsLinks, YoutubeContext } from "../context/YoutubeContext";
-import { useContext } from "react";
+import { useRef, useState, useContext } from "react";
+import axios from "axios";
 
 function Navbar() {
   const {
     newSearchBar,
-    navRef1,
-    navRef2,
-    navRef3,
-    inputValue,
     scrollDirection,
-    handleChange,
-    handleWordsSearch,
-    handleSeenSearchBar,
-    handleKeyPress,
     handleClickMenu,
+    handleSeenSearchBar,
+    setListItems,
   } = useContext(YoutubeContext);
+
+  const [inputValue, setInputValue] = useState("");
+
+  const [words, setWords] = useState("");
+
+  const navRef1 = useRef();
+  const navRef2 = useRef();
+  const navRef3 = useRef();
+  const navRef4 = useRef();
+
+  const handleChange = (e) => {
+    if (e.target.value !== "") {
+      setInputValue(e.target.value);
+      navRef2.current.style.display = "inline-block";
+      navRef4.current.classList.add("slide_box_matching");
+    } else {
+      navRef2.current.style.display = "none";
+      navRef4.current.classList.remove("slide_box_matching");
+    }
+  };
+
+  const handleWordsSearch = (e) => {
+    e.preventDefault();
+    setWords(inputValue);
+    triggerAPI();
+  };
+
+  const handleKeyPress = (e) => {
+    if ((e.target.key = "ENTER")) {
+      /* setWords(navRef1?.current.value); */
+      setWords(inputValue);
+      triggerAPI();
+    } else {
+      if (navRef1?.current.value !== "") {
+        navRef2?.current.classList.add("show_close_button");
+        navRef3?.current.classList.add("extend_width");
+      } else {
+        navRef2?.current.classList.remove("show_close_button");
+        navRef3?.current.classList.remove("extend_width");
+      }
+    }
+  };
+
+  const triggerAPI = () => {
+    const options = {
+      method: "GET",
+      url: "http://localhost:5000/search",
+      params: { words: words },
+    };
+
+    axios
+      .request(options)
+      .then((response) => {
+        setListItems(response.data.items);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="nav_container">
       <div className="nav_content">
-        <div className="nav_mobile" onClick={handleSeenSearchBar}>
+        <div className="nav_mobile">
           {!newSearchBar ? (
             <div className="flow_nav_mob_ct1 d-flex flex-column">
               {/*  have to implement position stick here */}
@@ -33,7 +87,10 @@ function Navbar() {
                 </div>
                 <ul className="nav_search">
                   <li className="search_item_wrapper">
-                    <i className="bi bi-search"></i>
+                    <i
+                      className="bi bi-search"
+                      onClick={handleSeenSearchBar}
+                    ></i>
                   </li>
                   <li className="three_dots_options">
                     <i className="bi bi-r-circle-fill"></i>
@@ -57,7 +114,11 @@ function Navbar() {
               </div>
             </div>
           ) : (
-            <div className="nav_mob_ct2">
+            <div
+              className={
+                newSearchBar ? `nav_mob_ct2 input_focus` : `nav_mob_ct2`
+              }
+            >
               <ul className="new_search_bar" onKeyDown={handleKeyPress}>
                 <li className="stand_left">
                   <i className="bi bi-arrow-left"></i>
@@ -70,24 +131,31 @@ function Navbar() {
                     ref={navRef1}
                     onChange={handleChange}
                   />
-                  <div ref={navRef2} className="button_partition">
-                    <button type="button" className="btn_effect_clear">
-                      <i className="effect_clear bi bi-x-lg text-secondary"></i>
-                    </button>
-                    <button
-                      type="button"
-                      className="btn_effect_search"
+
+                  <div className="button_partition">
+                    <i
+                      id="clear_tag"
+                      ref={navRef2}
+                      className="effect_clear bi bi-x-lg"
+                    ></i>
+                    <i
+                      className="effect_search bi bi-search"
                       onClick={handleWordsSearch}
-                    >
-                      <i className="effect_search bi bi-search text-secondary"></i>
-                    </button>
+                    ></i>
                   </div>
                 </li>
                 <li className="stand_right">
-                  <i class="bi bi-r-circle-fill"></i>
+                  <i className="bi bi-r-circle-fill"></i>
                 </li>
               </ul>
-              <div className="show_text_wrote">
+              <div
+                ref={navRef4}
+                className={
+                  inputValue !== ""
+                    ? `show_some_matching slide_box_matching`
+                    : `show_some_matching`
+                }
+              >
                 <span className="entered_value_key">{inputValue}</span>
               </div>
             </div>

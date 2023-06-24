@@ -1,5 +1,4 @@
-import { createContext, useState, useRef, useEffect } from "react";
-import axios from "axios";
+import { createContext, useState, useEffect } from "react";
 
 export const YoutubeContext = createContext(null);
 
@@ -20,16 +19,13 @@ export const UpToolsLinks = [
 
 function YoutubeContextProvider(props) {
   //variables
-  const [inputValue, setInputValue] = useState("");
-  const [words, setWords] = useState("");
+  /* const [inputValue, setInputValue] = useState(""); */
+  /*  const [words, setWords] = useState(""); */
   const [newSearchBar, setNewSearchbar] = useState(false);
   const [dotsMob, setDotMobs] = useState(false);
   const [menu, setMenu] = useState(false);
   const [listItems, setListItems] = useState([]);
   const [scrollDirection, setScrollDirection] = useState(null);
-  const navRef1 = useRef(null);
-  const navRef2 = useRef(null);
-  const navRef3 = useRef(null);
 
   // hide or show Navbar Mobile onScroll
   useEffect(() => {
@@ -58,16 +54,12 @@ function YoutubeContextProvider(props) {
   }, [scrollDirection, dotsMob]);
 
   // inner functions
-  const handleSeenSearchBar = () => {
-    setNewSearchbar((prev) => !prev);
-    navRef1?.current.focus();
-  };
 
-  const handleChange = (e) => {
+  /*  const handleChange = (e) => {
     setInputValue(e.target.value);
-  };
+  }; */
 
-  const triggerAPI = () => {
+  /*  const triggerAPI = () => {
     const options = {
       method: "GET",
       url: "http://localhost:5000/search",
@@ -82,15 +74,15 @@ function YoutubeContextProvider(props) {
       .catch((err) => {
         console.log(err);
       });
-  };
+  }; */
 
-  const handleWordsSearch = (e) => {
+  /*  const handleWordsSearch = (e) => {
     e.preventDefault();
     setWords(inputValue);
     triggerAPI();
-  };
+  }; */
 
-  const handleKeyPress = (e) => {
+  /*   const handleKeyPress = (e) => {
     if ((e.target.key = "ENTER")) {
       setWords(navRef1?.current.value);
       triggerAPI();
@@ -103,6 +95,11 @@ function YoutubeContextProvider(props) {
         navRef3?.current.classList.remove("extend_width");
       }
     }
+  }; */
+
+  const handleSeenSearchBar = (navRef1) => {
+    setNewSearchbar((prev) => !prev);
+    /* navRef1?.current.focus(); */
   };
 
   const handleClickMenu = () => {
@@ -110,20 +107,14 @@ function YoutubeContextProvider(props) {
   };
 
   const contextValue = {
-    newSearchBar,
-    navRef1,
-    navRef2,
-    navRef3,
-    inputValue,
     scrollDirection,
     listItems,
     dotsMob,
+    newSearchBar,
     menu,
-    handleChange,
-    handleWordsSearch,
-    handleSeenSearchBar,
-    handleKeyPress,
     handleClickMenu,
+    handleSeenSearchBar,
+    setListItems,
   };
 
   return (

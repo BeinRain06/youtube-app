@@ -214,6 +214,7 @@ font-family: 'Unna', serif; // TITLE*/
     margin: auto;
     /*   background-color: #bbb9b9; */
     object-fit: contain;
+    z-index: -1;
   }
 
   .box_crt_video {
@@ -248,7 +249,7 @@ font-family: 'Unna', serif; // TITLE*/
   .box_info_more {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     width: 35px;
     height: 100%;
@@ -499,10 +500,5 @@ font-family: 'Unna', serif; // TITLE*/
     height: 30%;
     justify-content: space-between;
     padding: 0.5rem 1rem;
-  }
-
-  .space_brand,
-  .box_info_more {
-    justify-content: center;
   }
 }
