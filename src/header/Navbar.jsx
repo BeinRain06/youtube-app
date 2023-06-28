@@ -32,12 +32,6 @@ function Navbar() {
     }
   };
 
-  const handleWordsSearch = (e) => {
-    e.preventDefault();
-    setWords(inputValue);
-    triggerAPI();
-  };
-
   const handleKeyPress = (e) => {
     if ((e.target.key = "ENTER")) {
       /* setWords(navRef1?.current.value); */
@@ -64,11 +58,23 @@ function Navbar() {
     axios
       .request(options)
       .then((response) => {
-        setListItems(response.data.items);
+        const lists = response.data.items;
+        lists.forEach((element, index) => ({ ...element, newId: index }));
+        setListItems(lists);
+
+        /* console.log(response.data.items); */
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const handleWordsSearch = (e) => {
+    e.preventDefault();
+    setTimeout(() => {
+      setWords(inputValue);
+      triggerAPI();
+    }, 1500);
   };
 
   return (
@@ -119,9 +125,13 @@ function Navbar() {
                 newSearchBar ? `nav_mob_ct2 input_focus` : `nav_mob_ct2`
               }
             >
-              <ul className="new_search_bar" onKeyDown={handleKeyPress}>
+              <ul className="new_search_bar">
+                {/* onKeyDown={handleKeyPress} */}
                 <li className="stand_left">
-                  <i className="bi bi-arrow-left"></i>
+                  <i
+                    className="bi bi-arrow-left"
+                    onClick={handleSeenSearchBar}
+                  ></i>
                 </li>
                 <li ref={navRef3} className="stand_middle d-flex flex-row">
                   <input
@@ -184,9 +194,17 @@ function Navbar() {
                     className="input_value"
                     placeholder="Rechercher"
                   />
+                  <i
+                    id="clear_tag"
+                    ref={navRef2}
+                    className="effect_clear bi bi-x-lg"
+                  ></i>
                 </li>
                 <li className="button_side">
-                  <i className="search_one bi bi-search"></i>
+                  <i
+                    className="search_one bi bi-search"
+                    onClick={handleWordsSearch}
+                  ></i>
                 </li>
               </ul>
             </div>

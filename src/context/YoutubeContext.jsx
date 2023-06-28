@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import { DataSimulation } from "../TryExData/DataSimulation";
 
 export const YoutubeContext = createContext(null);
 
@@ -22,15 +23,18 @@ function YoutubeContextProvider(props) {
   /* const [inputValue, setInputValue] = useState(""); */
   /*  const [words, setWords] = useState(""); */
   const [newSearchBar, setNewSearchbar] = useState(false);
-  const [dotsMob, setDotMobs] = useState(false);
+  const [dots, setDots] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [menu1, setMenu1] = useState(false);
+  const [indexClicked, setIndex] = useState("");
   const [listItems, setListItems] = useState([]);
   const [scrollDirection, setScrollDirection] = useState(null);
 
   // hide or show Navbar Mobile onScroll
-  useEffect(() => {
+
+  /*  useEffect(() => {
     const verticalDotsMobile = () => {
-      setDotMobs((prev) => !prev);
+      setDots((prev) => !prev);
     };
 
     const updateScrollDirection = () => {
@@ -51,7 +55,7 @@ function YoutubeContextProvider(props) {
       window.removeEventListener("scroll", updateScrollDirection); // remove Event listener
       window.removeEventListener("mousedown", verticalDotsMobile);
     };
-  }, [scrollDirection, dotsMob]);
+  }, [scrollDirection, dots]); */
 
   // inner functions
 
@@ -97,7 +101,7 @@ function YoutubeContextProvider(props) {
     }
   }; */
 
-  const handleSeenSearchBar = (navRef1) => {
+  const handleSeenSearchBar = () => {
     setNewSearchbar((prev) => !prev);
     /* navRef1?.current.focus(); */
   };
@@ -106,14 +110,28 @@ function YoutubeContextProvider(props) {
     setMenu((prev) => !prev);
   };
 
+  const handleClickMenu1 = (e) => {
+    setMenu1((prev) => !prev);
+    setIndex(() => e.target.id);
+    e.target.nextElementSibling.classList.toggle("show_dot_content");
+  };
+
+  const handleDots = () => {
+    setDots((prev) => !prev);
+  };
+
   const contextValue = {
     scrollDirection,
     listItems,
-    dotsMob,
-    newSearchBar,
+    dots,
     menu,
-    handleClickMenu,
+    menu1,
+    newSearchBar,
+    indexClicked,
     handleSeenSearchBar,
+    handleClickMenu,
+    handleClickMenu1,
+    handleDots,
     setListItems,
   };
 

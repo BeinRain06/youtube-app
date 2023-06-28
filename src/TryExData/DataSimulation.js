@@ -1,7 +1,8 @@
 import { Mirrai, March, Sherlock, Hokuto, Kindaichi } from "./pictures";
 
-export const DataSimulatiom = [
+export const DataSimulation = [
   {
+    id: "0",
     url: "#",
     img: Mirrai,
     channelTitle: "Mirrai Nikki",
@@ -10,6 +11,7 @@ export const DataSimulatiom = [
     publishedAt: "12:30 A.M 2weeks Before",
   },
   {
+    id: "1",
     url: "#",
     img: March,
     channelTitle: "Daughters March",
@@ -19,6 +21,7 @@ export const DataSimulatiom = [
   },
 
   {
+    id: "2",
     url: "#",
     img: Sherlock,
     channelTitle: "Daughters March",
@@ -28,6 +31,7 @@ export const DataSimulatiom = [
   },
 
   {
+    id: "3",
     url: "#",
     img: Hokuto,
     channelTitle: "Hokuto Chin",
@@ -37,6 +41,7 @@ export const DataSimulatiom = [
   },
 
   {
+    id: "4",
     url: "#",
     img: Kindaichi,
     channelTitle: "Kindaichi no Jikenbo",
