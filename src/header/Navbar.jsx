@@ -1,6 +1,6 @@
 import "./Navbar.css";
 import { UpToolsLinks, YoutubeContext } from "../context/YoutubeContext";
-import { useRef, useState, useContext } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
 import axios from "axios";
 
 function Navbar() {
@@ -16,36 +16,26 @@ function Navbar() {
 
   const [words, setWords] = useState("");
 
-  const navRef1 = useRef();
-  const navRef2 = useRef();
+  const navRef1 = useRef(); // input tag
+  const navRef2 = useRef(); // icon clear tag
   const navRef3 = useRef();
-  const navRef4 = useRef();
+  const navRef4 = useRef(); // box  matching searched word mobile
 
-  const handleChange = (e) => {
+  /*  const handleChange = (e) => {
+    setInputValue(e.target.value);
+    console.log(e.target.value);
     if (e.target.value !== "") {
-      setInputValue(e.target.value);
       navRef2.current.style.display = "inline-block";
       navRef4.current.classList.add("slide_box_matching");
     } else {
       navRef2.current.style.display = "none";
       navRef4.current.classList.remove("slide_box_matching");
     }
-  };
+  }; */
 
-  const handleKeyPress = (e) => {
-    if ((e.target.key = "ENTER")) {
-      /* setWords(navRef1?.current.value); */
-      setWords(inputValue);
-      triggerAPI();
-    } else {
-      if (navRef1?.current.value !== "") {
-        navRef2?.current.classList.add("show_close_button");
-        navRef3?.current.classList.add("extend_width");
-      } else {
-        navRef2?.current.classList.remove("show_close_button");
-        navRef3?.current.classList.remove("extend_width");
-      }
-    }
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+    console.log(inputValue);
   };
 
   const triggerAPI = () => {
@@ -58,11 +48,7 @@ function Navbar() {
     axios
       .request(options)
       .then((response) => {
-        const lists = response.data.items;
-        lists.forEach((element, index) => ({ ...element, newId: index }));
-        setListItems(lists);
-
-        /* console.log(response.data.items); */
+        setListItems(() => response.data.items);
       })
       .catch((err) => {
         console.log(err);
@@ -71,15 +57,44 @@ function Navbar() {
 
   const handleWordsSearch = (e) => {
     e.preventDefault();
+    /* console.log(navRef1.current.value); */
     setTimeout(() => {
       setWords(inputValue);
+      console.log(inputValue);
       triggerAPI();
     }, 1500);
   };
 
+  const handleClearInput = () => {
+    setInputValue("");
+    setWords("sprinter");
+    triggerAPI();
+  };
+
+  /* useEffect(() => {
+    const triggerAPI = () => {
+      const options = {
+        method: "GET",
+        url: "http://localhost:5000/search",
+        params: { words: words },
+      };
+
+      axios
+        .request(options)
+        .then((response) => {
+          setListItems(response.data.items);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    triggerAPI();
+  }, [words]); */
+
   return (
     <div className="nav_container">
-      <div className="nav_content">
+      <div className="nav_content" onClick={(event) => console.log(inputValue)}>
         <div className="nav_mobile">
           {!newSearchBar ? (
             <div className="flow_nav_mob_ct1 d-flex flex-column">
@@ -126,7 +141,6 @@ function Navbar() {
               }
             >
               <ul className="new_search_bar">
-                {/* onKeyDown={handleKeyPress} */}
                 <li className="stand_left">
                   <i
                     className="bi bi-arrow-left"
@@ -198,6 +212,7 @@ function Navbar() {
                     id="clear_tag"
                     ref={navRef2}
                     className="effect_clear bi bi-x-lg"
+                    onClick={handleClearInput}
                   ></i>
                 </li>
                 <li className="button_side">

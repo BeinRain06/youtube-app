@@ -23,7 +23,6 @@ function YoutubeContextProvider(props) {
   /* const [inputValue, setInputValue] = useState(""); */
   /*  const [words, setWords] = useState(""); */
   const [newSearchBar, setNewSearchbar] = useState(false);
-  const [dots, setDots] = useState(false);
   const [menu, setMenu] = useState(false);
   const [menu1, setMenu1] = useState(false);
   const [indexClicked, setIndex] = useState("");
@@ -112,18 +111,16 @@ function YoutubeContextProvider(props) {
 
   const handleClickMenu1 = (e) => {
     setMenu1((prev) => !prev);
-    setIndex(() => e.target.id);
     e.target.nextElementSibling.classList.toggle("show_dot_content");
   };
 
-  const handleDots = () => {
-    setDots((prev) => !prev);
+  const handleIndexClicked = (id) => {
+    setIndex(id);
   };
 
   const contextValue = {
     scrollDirection,
     listItems,
-    dots,
     menu,
     menu1,
     newSearchBar,
@@ -131,8 +128,7 @@ function YoutubeContextProvider(props) {
     handleSeenSearchBar,
     handleClickMenu,
     handleClickMenu1,
-    handleDots,
-    setListItems,
+    handleIndexClicked,
   };
 
   return (

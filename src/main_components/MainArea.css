@@ -222,6 +222,8 @@ font-family: 'Unna', serif; // TITLE*/
     width: inherit;
     height: 65%;
     place-items: center;
+    cursor: pointer;
+    z-index: 5;
   }
 
   .video_link {
@@ -299,7 +301,8 @@ font-family: 'Unna', serif; // TITLE*/
     font-weight: bold;
     text-align: left;
     margin: auto;
-    /*   background-color: bisque; */
+    cursor: pointer;
+    z-index: 5;
   }
 
   .channel_details {
@@ -309,7 +312,6 @@ font-family: 'Unna', serif; // TITLE*/
     font-size: 1.1em;
     line-height: 0.9em;
     text-align: left;
-    /*     background-color: aqua; */
   }
 
   /* three vertical-dots content */
@@ -328,6 +330,7 @@ font-family: 'Unna', serif; // TITLE*/
     opacity: 0;
     /*  visibility: visible;
     opacity: 1; */
+    backdrop-filter: grayscale(5px);
     border-radius: 5px;
     background-color: #e6e6e6a9;
     transition: all 0.45s ease-in-out;
@@ -346,6 +349,7 @@ font-family: 'Unna', serif; // TITLE*/
     visibility: visible;
     opacity: 1;
     border-radius: 5px;
+    backdrop-filter: contrast(120%);
     background-color: #e6e6e6a9;
   }
 
@@ -569,16 +573,6 @@ font-family: 'Unna', serif; // TITLE*/
     opacity: 1;
     border-radius: 5px;
     background-color: #e6e6e6a9;
-  }
-
-  .desk_dot_content li {
-    z-index: 100;
-    color: #fff;
-    transition: all 0.5s ease-in-out;
-  }
-
-  .desk_dot_content li:hover {
-    color: brown;
   }
 
   .box_empty_space {

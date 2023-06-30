@@ -7,64 +7,23 @@ import { DataSimulation } from "../TryExData/DataSimulation";
 import { Link } from "react-router-dom";
 
 function MainArea() {
-  const { indexClicked, dots, menu, menu1, listItems, handleClickMenu1 } =
+  const { menu, listItems, handleClickMenu1, handleIndexClicked } =
     useContext(YoutubeContext);
 
   const mobRef1 = useRef(null);
 
-  const deskRef1 = useRef(null);
-
-  const toggleRef1 = useRef(null);
+  // add id to listItems
+  const newListItems = listItems.map((item, index) => ({
+    ...item,
+    newId: index,
+  }));
+  /* setListItems((prev) => [...prev, (prev = newListItems)]); */
 
   const handleEventClicked = (e) => {
     console.log(e.target);
-    console.log(dots);
+    console.log(newListItems);
+    /*     console.log(listItems); */
   };
-
-  const handleMobileDots = () => {
-    /*  setDotMobs((prev) => !prev); */
-    if (mobRef1.current.display !== "inline-block") {
-      mobRef1.current.display = "inline-block";
-    } else {
-      mobRef1.current.display = "none";
-    }
-  };
-
-  /*  const handleSwitchDotsButton = (e) => {
-    const innerWidth = window.innerWidth;
-    if (innerWidth <= 989) {
-      handleMobileDots();
-    } else {
-      handleDeskDots(e);
-    }
-  }; */
-
-  /*  const handleDeskDots = (e) => {
-    const spaceLeft = window.innerWidth - e.screenX;
-    if (spaceLeft < 120) {
-      deskRef1.current.style.left = "-4rem";
-      deskRef1.current.style.visibility = "visible";
-      deskRef1.current.style.opacity = "1";
-      handleMobileDots();
-    } else {
-      deskRef1.current.style.left = "0";
-      deskRef1.current.style.visibility = "visible";
-      deskRef1.current.style.opacity = "1";
-      handleMobileDots();
-    }
-  }; */
-
-  /*   const handleDeskDots = (e) => {
-    if (deskRef1.current.style.visibility === "hidden") {
-      deskRef1.current.style.visibility = "visible";
-      deskRef1.current.style.opacity = "1";
-      handleMobileDots();
-    } else {
-      deskRef1.current.style.visibility = "hidden";
-      deskRef1.current.style.opacity = "0";
-      handleMobileDots();
-    }
-  }; */
 
   return (
     <div className="main_area_container">
@@ -172,9 +131,9 @@ function MainArea() {
           </div>
         </div>
         <div className="box_videos_city">
-          {/* <ul className="box_videos_content">
-            {listItems.map((item, index) => (
-              <li key={index} className="box_video">
+          <ul className="box_videos_content">
+            {newListItems.map((item, index) => (
+              <li key={index} id={index} className="box_video">
                 <div className="box_crt_video">
                   <video
                     controls={true}
@@ -182,29 +141,35 @@ function MainArea() {
                     className="video_link"
                   ></video>
                 </div>
+
                 <div className="box_subtitle">
                   <div className="space_brand">
                     <i className="logo_brand">{item.snippet.channelTitle}</i>
                   </div>
                   <p className="video_infos">
-                    <span id="clamp-this-module" className="title_video">
-                      {item.snippet.title}
-                    </span>
+                    <Link
+                      to="/videos"
+                      id={item.newId}
+                      style={{
+                        textDecorationLine: "underline",
+                        color: "#333",
+                      }}
+                      onClick={() => handleIndexClicked(item.newId)}
+                    >
+                      <span className="title_video">{item.snippet.title}</span>
+                    </Link>
+
                     <span className="channel_details">
                       {item.snippet.channelTitle} {item.snippet.publishedAt}
                     </span>
                   </p>
-                  <div className="box_info_more" onClick={(e) => handleClickMenu1(e)>
-                    <i className="bi bi-three-dots-vertical"></i>
-                    <ul
+                  <div className="box_info_more">
+                    <i
                       id={index}
-                      ref={toggleRef1}
-                      className={
-                        menu1 && toggleRef1.current.id === indexClicked
-                          ? `desk_dot_content show_dot_content`
-                          : `desk_dot_content`
-                      }
-                    >
+                      className="bi bi-three-dots-vertical"
+                      onClick={(e) => handleClickMenu1(e)}
+                    ></i>
+                    <ul id={index} className="desk_dot_content">
                       <li>Not Interest</li>
                       <li>Don't recommend this video</li>
                       <li>See Later</li>
@@ -213,20 +178,11 @@ function MainArea() {
                 </div>
               </li>
             ))}
-          </ul> */}
+          </ul>
 
-          <ul className="box_videos_content">
+          {/* <ul className="box_videos_content">
             {DataSimulation.map((item, index) => (
               <li key={index} id={index} className="box_video">
-                {/* <Link to="/videos" id={index}>
-                  <div className="box_crt_video">
-                    <img
-                      src={item.img}
-                      alt="oops missing"
-                      className="video_link"
-                    ></img>
-                  </div>
-                </Link> */}
                 <div className="box_crt_video">
                   <img
                     src={item.img}
@@ -240,14 +196,14 @@ function MainArea() {
                     <i className="logo_brand">{item.channelTitle}</i>
                   </div>
                   <p className="video_infos">
-                    {/*   <Link to="/videos" id={index}>
-                      <span id="clamp-this-module" className="title_video">
-                        {item.title}
-                      </span>
-                    </Link> */}
-                    <span id="clamp-this-module" className="title_video">
-                      {item.title}
-                    </span>
+                    <Link
+                      to="/videos"
+                      id={index}
+                      style={{ textDecorationLine: "none", color: "#333" }}
+                    >
+                      <span className="title_video">{item.title}</span>
+                    </Link>
+
                     <span className="channel_details">
                       {item.channelTitle} {item.publishedAt}
                     </span>
@@ -258,20 +214,6 @@ function MainArea() {
                       className="bi bi-three-dots-vertical"
                       onClick={(e) => handleClickMenu1(e)}
                     ></i>
-                    {/*  <ul
-                      id={index}
-                      ref={toggleRef1}
-                      className={
-                        menu1
-                          ? `desk_dot_content show_dot_content`
-                          : `desk_dot_content`
-                      }
-                    >
-                      <li>Not Interest</li>
-                      <li>Don't recommend this video</li>
-                      <li>See Later</li>
-                    </ul> */}
-
                     <ul
                       id={index}
                       ref={toggleRef1}
@@ -285,7 +227,7 @@ function MainArea() {
                 </div>
               </li>
             ))}
-          </ul>
+          </ul> */}
           <div className="box_empty_space"></div>
         </div>
         <div className="box_empty_space"></div>

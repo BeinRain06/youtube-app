@@ -12,12 +12,20 @@ div {
   /* first video */
   .turn_back {
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
+    display: grid;
+    place-items: center;
     background-color: rgb(20, 25, 68);
     width: 35px;
     height: 35px;
+    opacity: 0.65;
+    transition: all 1s ease-in-out;
     z-index: 4;
+  }
+
+  .turn_back:hover {
+    opacity: 1;
   }
 
   .turn_back .bi-arrow-left {
@@ -36,10 +44,50 @@ div {
 
   .first_video_space {
     position: relative;
-    display: grid;
-    place-items: center;
+    left: -1rem;
+    display: flex;
+    justify-content: center;
     width: 100%;
-    height: 250px;
+    height: 400px;
+    padding-bottom: 0.5rem;
+    padding: 1rem;
+    margin: 0 1rem 1rem;
+    background-color: rgb(48, 30, 43);
+  }
+
+  .box_first_video {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    color: #fff;
+    border-radius: 5px;
+    z-index: 2;
+    margin-block: 1rem;
+  }
+
+  .box_crt_first_video {
+    display: grid;
+    width: inherit;
+    height: 320px;
+    place-items: center;
+    border-radius: 5px;
+  }
+
+  .video_first_link {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    transform: scale(0.9);
+    border-radius: 5px;
+    z-index: 0;
+    margin: auto;
+    border: 1px solid rgb(221, 124, 124);
   }
 
   .alternative_video_space {
@@ -50,7 +98,7 @@ div {
     height: auto;
   }
 
-  .box_videos_content {
+  .box_videos_new_content {
     position: relative;
     top: 0;
     left: 0;
@@ -65,43 +113,53 @@ div {
     margin: 0 auto;
   }
 
-  .box_video {
+  .box_new_video {
     position: relative;
     top: 0;
-    /*     left: -1rem; */
-    left: 0;
+    left: -1.25rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
-    /* margin: auto; */
+    height: auto;
     object-fit: contain;
     z-index: 2;
+    color: #fff;
+    border-radius: 5px;
   }
 
-  .box_crt_video {
+  .box_new_video:nth-child(odd) {
+    background-color: rgba(67, 22, 77, 0.85);
+  }
+  .box_new_video:nth-child(even) {
+    background-color: rgba(64, 97, 71, 0.6);
+  }
+
+  .box_crt_new_video {
     display: grid;
     width: inherit;
-    height: 65%;
+    height: 220px;
     place-items: center;
+    border-radius: 5px;
   }
 
-  .video_link {
+  .video_new_link {
     width: 100%;
     height: 100%;
     object-fit: fill;
+    transform: scale(0.9);
+    border-radius: 5px;
     z-index: 0;
     margin: auto;
     border: 1px solid rgb(221, 124, 124);
   }
 
   /* box subtitle*/
-  .box_subtitle {
+  .box_new_subtitle {
     position: relative;
     width: 100%;
-    height: 35%;
+    height: 74px;
     padding: 0.5rem;
     display: flex;
     flex-direction: row;
@@ -109,18 +167,18 @@ div {
     align-items: center;
   }
 
-  .space_brand,
-  .box_info_more {
+  .space_new_brand,
+  .box_info_new_more {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 35px;
     height: 100%;
-    z-index: 10;
+    z-index: 3;
   }
 
-  .logo_brand,
+  .logo_new_brand,
   .bi-three-dots-vertical {
     display: grid;
     place-items: center;
@@ -132,7 +190,7 @@ div {
     z-index: 5;
   }
 
-  .video_infos {
+  .video_new_infos {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -144,7 +202,7 @@ div {
     text-align: left;
   }
 
-  .title_video {
+  .title_new_video {
     /*achieve css ellipsis -truncate text after
     a couple of line*/
 
@@ -154,31 +212,28 @@ div {
     white-space: pre-wrap;
     width: 100%;
     line-height: 1.25;
-    height: 2.65em;
+    height: 2.6em;
     overflow: hidden;
-
     font-family: "Roboto", sans-serif;
     font-size: 1.1em;
     padding: 0 0.5rem;
     font-weight: bold;
     text-align: left;
     margin: auto;
-    /*   background-color: bisque; */
   }
 
-  .channel_details {
+  .channel_new_details {
     padding: 0 0.5rem;
     font-family: "Piazzolla", serif;
     width: 100%;
     font-size: 1.1em;
     line-height: 0.9em;
     text-align: left;
-    /*     background-color: aqua; */
   }
 
   /* three vertical-dots content */
 
-  .desk_dot_content {
+  .desk_dot_new_content {
     position: absolute;
     top: -9rem;
     left: 5.1rem;
@@ -190,14 +245,13 @@ div {
     align-items: center;
     visibility: hidden;
     opacity: 0;
-    /*  visibility: visible;
-    opacity: 1; */
     border-radius: 5px;
     background-color: #e6e6e6a9;
     transition: all 0.45s ease-in-out;
+    z-index: 25;
   }
 
-  .desk_dot_content.show_dot_content {
+  .desk_dot_new_content.show_dot_new_content {
     position: absolute;
     top: -9rem;
     left: 5.1rem;
@@ -211,19 +265,21 @@ div {
     opacity: 1;
     border-radius: 5px;
     background-color: #e6e6e6a9;
+    background-color: black;
+    z-index: 25;
   }
 
-  .desk_dot_content li {
+  .desk_dot_new_content li {
     z-index: 100;
     color: #fff;
     transition: all 0.5s ease-in-out;
   }
 
-  .desk_dot_content li:hover {
+  .desk_dot_new_content li:hover {
     color: brown;
   }
 
-  .box_empty_space {
+  .box_empty_new_space {
     display: block;
     padding: 1rem 0;
     width: 100vw;
@@ -232,27 +288,37 @@ div {
 }
 
 @media (min-width: 600px) {
-  .new_mob_content {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: auto;
-  }
-
   .first_video_space {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-basis: 70%;
+    background-color: rgb(61, 61, 61);
   }
 
   .alternative_video_space {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .box_new_video {
+    flex-direction: row;
+  }
+
+  .box_crt_new_video {
     display: grid;
-    place-items: center;
-    width: 30%;
+    width: 40%;
+    height: 250px;
+  }
+  .box_new_subtitle {
+    width: 60%;
+  }
+
+  .box_empty_new_space {
+    display: none;
   }
 }

@@ -4,16 +4,27 @@ import { YoutubeContext } from "../context/YoutubeContext";
 import { useRef, useContext } from "react";
 import { Link } from "react-router-dom";
 function NewArea({ id }) {
-  const { menu1, indexClicked, listItems, handleClickMenu1 } =
+  const { menu1, listItems, indexClicked, handleClickMenu1 } =
     useContext(YoutubeContext);
 
-  const toggleRef1 = useRef(null);
+  // add id to listItems
+  const newListItems = listItems.map((item, index) => ({
+    ...item,
+    newId: index,
+  }));
 
-  const first_video = DataSimulation.map((item, index) => item.id === id);
-  const others_video = DataSimulation.filter((item, index) => item.id !== id);
+  const first_video = newListItems.map(
+    (item, index) => item.newId === indexClicked
+  );
+  const others_video = newListItems.filter(
+    (item, index) => item.newId !== indexClicked
+  );
 
   return (
-    <div className="new_area_container">
+    <div
+      className="new_area_container"
+      onClick={(e) => console.log(e.target.nextElementSibling)}
+    >
       {/*  mobile form */}
       <div className="new_mob_content">
         <Link to="/">
@@ -22,40 +33,30 @@ function NewArea({ id }) {
           </div>
         </Link>
         <div className="first_video_space">
-          <div key={id} id={id} className="box_video">
-            <div className="box_crt_video">
+          <div key={id} id={id} className="box_first_video">
+            <div className="box_crt_first_video">
               <img
                 src={first_video.img}
                 alt="oops missing"
-                className="video_link"
+                className="video_first_link"
               ></img>
             </div>
-            <div className="box_subtitle">
-              <div className="space_brand">
-                <i className="logo_brand">{first_video.channelTitle}</i>
+            <div className="box_new_subtitle">
+              <div className="space_new_brand">
+                <i className="logo_new_brand">{first_video.channelTitle}</i>
               </div>
-              <p className="video_infos">
-                <span id="clamp-this-module" className="title_video">
-                  {first_video.title}
-                </span>
-                <span className="channel_details">
+              <p className="video_new_infos">
+                <span className="title_new_video">{first_video.title}</span>
+                <span className="channel_new_details">
                   {first_video.channelTitle} {first_video.publishedAt}
                 </span>
               </p>
-              <div
-                id={id}
-                className="box_info_more"
-                onClick={(e) => handleClickMenu1(e)}
-              >
+              <div id={id} className="box_info_new_more">
                 <i className="bi bi-three-dots-vertical"></i>
                 <ul
                   id={id}
-                  ref={toggleRef1}
-                  className={
-                    menu1 && toggleRef1.current.id === indexClicked
-                      ? `desk_dot_content show_dot_content`
-                      : `desk_dot_content`
-                  }
+                  className="desk_dot_new_content"
+                  onClick={(e) => handleClickMenu1(e)}
                 >
                   <li>Not Interest</li>
                   <li>Don't recommend this video</li>
@@ -66,43 +67,32 @@ function NewArea({ id }) {
           </div>
         </div>
         <div className="alternative_video_space">
-          <ul className="box_videos_content">
+          <ul className="box_videos_new_content">
             {others_video.map((item, index) => (
-              <li key={item.id} id={item.id} className="box_video">
-                <div className="box_crt_video">
+              <li key={item.id} id={item.id} className="box_new_video">
+                <div className="box_crt_new_video">
                   <img
                     src={item.img}
                     alt="oops missing"
-                    className="video_link"
+                    className="video_new_link"
                   ></img>
                 </div>
-                <div className="box_subtitle">
-                  <div className="space_brand">
-                    <i className="logo_brand">{item.channelTitle}</i>
+                <div className="box_new_subtitle">
+                  <div className="space_new_brand">
+                    <i className="logo_new_brand">{item.channelTitle}</i>
                   </div>
-                  <p className="video_infos">
-                    <span id="clamp-this-module" className="title_video">
-                      {item.title}
-                    </span>
-                    <span className="channel_details">
+                  <p className="video_new_infos">
+                    <span className="title_new_video">{item.title}</span>
+                    <span className="channel_new_details">
                       {item.channelTitle} {item.publishedAt}
                     </span>
                   </p>
-                  <div
-                    id={item.id}
-                    className="box_info_more"
-                    onClick={(e) => handleClickMenu1(e)}
-                  >
-                    <i className="bi bi-three-dots-vertical"></i>
-                    <ul
-                      id={item.id}
-                      ref={toggleRef1}
-                      className={
-                        menu1 && toggleRef1.current.id === indexClicked
-                          ? `desk_dot_content show_dot_content`
-                          : `desk_dot_content`
-                      }
-                    >
+                  <div id={item.id} className="box_info_new_more">
+                    <i
+                      className="bi bi-three-dots-vertical"
+                      onClick={(e) => handleClickMenu1(e)}
+                    ></i>
+                    <ul id={item.id} className="desk_dot_new_content">
                       <li>Not Interest</li>
                       <li>Don't recommend this video</li>
                       <li>See Later</li>
@@ -112,7 +102,7 @@ function NewArea({ id }) {
               </li>
             ))}
           </ul>
-          <div className="box_empty_space"></div>
+          <div className="box_empty_new_space"></div>
         </div>
       </div>
     </div>

@@ -2,10 +2,10 @@
 import "./App.css";
 import Navbar from "./header/Navbar";
 import MainArea from "./main_components/MainArea";
-/* import NewArea from "./main_components/NewArea"; */
-/* import { HashRouter as Router, Routes, Route } from "react-router-dom"; */
+import NewArea from "./main_components/NewArea";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
-/* function App() {
+function App() {
   return (
     <div className="App">
       <Router>
@@ -26,9 +26,9 @@ import MainArea from "./main_components/MainArea";
       </Router>
     </div>
   );
-} */
+}
 
-function App() {
+/* function App() {
   return (
     <div className="App">
       <div className="App_container">
@@ -37,6 +37,6 @@ function App() {
       </div>
     </div>
   );
-}
+} */
 
 export default App;
