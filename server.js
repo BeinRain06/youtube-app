@@ -33,7 +33,9 @@ app.get("/", (req, res) => {
 app.get("/search", async (req, res, next) => {
   try {
     const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
-    let words = req.query.words;
+    let words = words;
+    console.log(words);
+    console.log(req);
 
     /*  console.log(req); */
 
@@ -53,9 +55,11 @@ app.get("/search", async (req, res, next) => {
       "x-youtube-api": process.env.YOUTUBE_API_KEY,
     }, */
     };
+
     const response = await axios.request(options);
 
-    res.send(res.json(response.data));
+    /*  res.send(res.json(response.data)); */
+    res.send(console.log(req));
 
     /*  axios.request(options).then((response) => {
     res.json(response.data);

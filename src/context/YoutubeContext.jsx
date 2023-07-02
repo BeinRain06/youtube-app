@@ -56,50 +56,6 @@ function YoutubeContextProvider(props) {
     };
   }, [scrollDirection, dots]); */
 
-  // inner functions
-
-  /*  const handleChange = (e) => {
-    setInputValue(e.target.value);
-  }; */
-
-  /*  const triggerAPI = () => {
-    const options = {
-      method: "GET",
-      url: "http://localhost:5000/search",
-      params: { words: words },
-    };
-
-    axios
-      .request(options)
-      .then((response) => {
-        setListItems(response.data.items);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }; */
-
-  /*  const handleWordsSearch = (e) => {
-    e.preventDefault();
-    setWords(inputValue);
-    triggerAPI();
-  }; */
-
-  /*   const handleKeyPress = (e) => {
-    if ((e.target.key = "ENTER")) {
-      setWords(navRef1?.current.value);
-      triggerAPI();
-    } else {
-      if (navRef1?.current.value !== "") {
-        navRef2?.current.classList.add("show_close_button");
-        navRef3?.current.classList.add("extend_width");
-      } else {
-        navRef2?.current.classList.remove("show_close_button");
-        navRef3?.current.classList.remove("extend_width");
-      }
-    }
-  }; */
-
   const handleSeenSearchBar = () => {
     setNewSearchbar((prev) => !prev);
     /* navRef1?.current.focus(); */
